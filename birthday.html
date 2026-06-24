@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Cookie ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --pink:#ff4d8d;
+    --pink2:#ff7eb3;
+    --dark:#222;
+    --white:#fff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffd1dc);
+    min-height:100vh;
+    color:white;
+}
+
+section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:clamp(2.5rem,8vw,5rem);
+}
+
+.hero p{
+    font-size:clamp(1rem,3vw,1.3rem);
+    margin-top:15px;
+}
+
+.btn{
+    margin-top:30px;
+    padding:14px 30px;
+    border:none;
+    border-radius:50px;
+    background:white;
+    color:var(--pink);
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.card{
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    border-radius:24px;
+    padding:30px;
+    width:min(95%,700px);
+}
+
+.hidden{
+    display:none;
+}
+
+.typewriter{
+    white-space:pre-wrap;
+    line-height:1.9;
+    text-align:left;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    width:min(100%,900px);
+    margin-top:30px;
+}
+
+.gallery img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+.reasons{
+    width:min(100%,700px);
+    text-align:left;
+}
+
+.reason{
+    background:rgba(255,255,255,.15);
+    padding:15px;
+    border-radius:15px;
+    margin:12px 0;
+}
+
+.final h1{
+    font-size:clamp(3rem,10vw,7rem);
+}
+
+.final p{
+    font-size:clamp(1.2rem,4vw,2rem);
+}
+
+.heart{
+    position:fixed;
+    bottom:-20px;
+    color:white;
+    pointer-events:none;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>🎂 Happy Birthday Cookie ❤️</h1>
+    <p>For the most beautiful girl in my universe...</p>
+    <button class="btn" onclick="startJourney()">
+        Tap To Begin ✨
+    </button>
+</section>
+
+<section id="loader" class="hidden">
+    <div class="card">
+        <h2>Searching for the most beautiful girl... 🔍</h2>
+        <h1 id="percent">0%</h1>
+    </div>
+</section>
+
+<section id="result" class="hidden">
+    <div class="card">
+        <h1>Result Found ❤️</h1>
+        <br>
+        <h2>Kavya</h2>
+        <h3>Nickname: Cookie 🍪</h3>
+        <h3>Status: World's Most Beautiful Girl 👑</h3>
+        <button class="btn" onclick="showLetter()">
+            Open Birthday Letter 💌
+        </button>
+    </div>
+</section>
+
+<section id="letterSection" class="hidden">
+    <div class="card">
+        <h2>Dear Cookie ❤️</h2>
+        <br>
+        <div id="letter" class="typewriter"></div>
+    </div>
+</section>
+
+<section id="reasonsSection" class="hidden">
+    <h2>10 Reasons Why I Love You ❤️</h2>
+
+    <div class="reasons">
+        <div class="reason">🥰 Your smile brightens my entire day.</div>
+        <div class="reason">❤️ You always make me feel special.</div>
+        <div class="reason">🍪 Because you're my Cookie.</div>
+        <div class="reason">😊 Your laugh is my favorite sound.</div>
+        <div class="reason">🌎 You make my world better.</div>
+        <div class="reason">✨ You're beautiful inside and out.</div>
+        <div class="reason">🤗 You make ordinary days magical.</div>
+        <div class="reason">💖 Your kindness inspires me.</div>
+        <div class="reason">🌹 Every memory with you is precious.</div>
+        <div class="reason">∞ Because you're simply you.</div>
+    </div>
+</section>
+
+<section class="final hidden" id="finalSection">
+    <h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+    <p>My Sweet Cookie ❤️</p>
+
+    <br><br>
+
+    <p>
+        May every dream you have come true,
+        and may your smile never fade.
+    </p>
+
+    <br>
+
+    <h2>I Love You Forever ❤️</h2>
+</section>
+
+<script>
+
+const loveLetter = `
+Today is one of the most special days because
+it's the day you came into this world.
+
+Dear Cookie ❤️,
+
+Thank you for being the most beautiful part of my life.
+
+You make my happiest moments happier,
+my difficult days easier,
+and my world brighter.
+
+Every message from you,
+every laugh,
+every memory,
+means more to me than you know.
+
+I hope this birthday brings you endless happiness,
+success, love, and everything your heart wishes for.
+
+You deserve all the good things in the world.
+
+Happy Birthday, Kavya ❤️
+
+Forever Yours ❤️
+`;
+
+function startJourney(){
+
+    document.querySelector('.hero').style.display='none';
+    document.getElementById('loader').classList.remove('hidden');
+
+    let p=0;
+
+    const interval=setInterval(()=>{
+        p++;
+        document.getElementById('percent').innerText=p+"%";
+
+        if(p===100){
+            clearInterval(interval);
+
+            document.getElementById('loader').style.display='none';
+
+            document.getElementById('result').classList.remove('hidden');
+
+            document.getElementById('result').scrollIntoView({
+                behavior:'smooth'
+            });
+        }
+    },25);
+}
+
+function showLetter(){
+    
+    document.getElementById('letterSection')
+        .classList.remove('hidden');
+
+                    document.getElementById('letterSection')
+                    .scrollIntoView({behavior:'smooth'});  
+
+    let i=0;
+
+    const target=document.getElementById('letter');
+
+    const typing=setInterval(()=>{
+        target.textContent += loveLetter.charAt(i);
+        i++;
+
+        if(i>=loveLetter.length){
+            clearInterval(typing);
+
+            setTimeout(()=>{
+                document.getElementById('reasonsSection')
+                    .classList.remove('hidden');
+
+                document.getElementById('finalSection')
+                    .classList.remove('hidden');
+
+            },1000);
+        }
+    },40);
+}
+
+function createHeart(){
+
+    const heart=document.createElement('div');
+
+    heart.className='heart';
+
+    heart.innerHTML='❤️';
+
+    heart.style.left=Math.random()*100+'vw';
+
+    heart.style.fontSize=(20+Math.random()*30)+'px';
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },8000);
+}
+
+setInterval(createHeart,350);
+
+</script>
+
+</body>
+</html>
+
